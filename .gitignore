@@ -1,0 +1,8 @@
+# Virtual Environment.
+.venv
+
+# Byte-compiled Files.
+__pycache__
+
+# Training history pickled files.
+*.pickle
