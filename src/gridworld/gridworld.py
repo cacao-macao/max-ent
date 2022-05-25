@@ -264,7 +264,7 @@ def getBookGrid():
             ['S', ' ', ' ', ' ']]
     return Gridworld(grid)
 
-def getMazeGrid():
+def getMazeGrid2():
     grid = [[' ', ' ', ' ',  1 ],
             ['#', '#', ' ', '#'],
             [' ', '#', ' ', ' '],
@@ -282,7 +282,7 @@ def getTwinGrid():
             [ 10, ' ', ' ', ' ', ' ', ' ', 10]]
     return Gridworld(grid)
 
-def getConfuseGrid():
+def getSmallGrid():
     grid = [['S', ' ', ' ', ' ',  10],
             [' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' '],
@@ -290,20 +290,12 @@ def getConfuseGrid():
             [ 10, ' ', ' ', ' ', ' ']]
     return Gridworld(grid)
 
-def getSmallGrid():
-    grid = [['S', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ',  10]]
-    return Gridworld(grid)
-
-def getZeroGrid():
-    grid = [['S', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ',  0 ]]
+def getMazeGrid():
+    grid = [['S', ' ', ' ', ' ',  10],
+            [' ', '#', '#', '#', '#'],
+            [' ', '#', ' ', ' ', ' '],
+            [' ', '#', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ',  30]]
     return Gridworld(grid)
 
 #

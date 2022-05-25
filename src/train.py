@@ -26,7 +26,7 @@ parser.add_argument("--livingReward", dest="livingReward", type=float, default=-
 parser.add_argument("--noise", dest="noise", type=float, default=0.0,
     help="How often action results in unintended direction (default %default)")
 parser.add_argument("--grid", dest="grid", type=str, default="SmallGrid",
-    help="Grid to use (case sensitive; options are TwinGrid, ConfuseGrid, SmallGrid, BookGrid, BridgeGrid, CliffGrid, MazeGrid, default %default)")
+    help="Grid to use (case sensitive; options are SmallGrid, MazeGrid, default %default)")
 parser.add_argument("--iters", dest="iters", type=int, default=10,
     help="Number of iterations of value iteration (default %default)")
 parser.add_argument("--episodes", dest="episodes", type=int, default=32,
@@ -40,7 +40,7 @@ args = parser.parse_args()
 args.dropout = 0.0
 args.learning_rate = 1e-3
 args.lr_decay = 1.0
-args.steps = 10
+args.steps = 12
 args.clip_grad = 10.0
 args.reg = 0.0
 args.log_every = 100
@@ -58,7 +58,7 @@ np.set_printoptions(precision=5, suppress=~False)
 
 
 # Create file to log output during training.
-log_dir = f"../logs/{args.grid}_iters_{args.iters}_entreg_{args.entropy_reg}"
+log_dir = f"../logs/{args.grid}_iters_{args.iters}_entreg_{args.entropy_reg}"#_decayed"
 os.makedirs(log_dir, exist_ok=True)
 log_file = os.path.join(log_dir, "train.log")
 stdout = open(log_file, "w")

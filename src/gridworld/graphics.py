@@ -196,7 +196,6 @@ def drawPolicy(gridworld, policy, currentState=None, message="Policy"):
             gridType = grid[x][y]
             isExit = (str(gridType) != gridType)
             isCurrent = (currentState == state)
-            action_porbs = policy[state]
 
             if gridType == "#":
                 drawSquare(x, y, 0, 0, 0, None, None, True, False, isCurrent)
@@ -206,9 +205,10 @@ def drawPolicy(gridworld, policy, currentState=None, message="Policy"):
                 cell = grid[x][y]
                 if type(cell) == int or type(cell) == float:
                     value = cell
-                    valString = '%.1f' % value
+                    valString = '%.0f' % value
                     drawSquare(x, y, value, minValue, value, valString, action, False, isExit, isCurrent)
             else:
+                action_porbs = policy[state]
                 drawSquareP(x, y, action_porbs, minValue, maxValue, isCurrent)
     pos = to_screen(((grid.width - 1.0) / 2.0, 0.8))
     text( pos, TEXT_COLOR, message, "Courier", -32, "bold", "c" )
@@ -242,10 +242,10 @@ def drawNullSquare(grid,x, y, isObstacle, isTerminal, isCurrent):
                      color = EDGE_COLOR,
                      filled = 0,
                      width = 2)
-        text( (screen_x, screen_y),
+        text( (screen_x, screen_y+10),
                TEXT_COLOR,
                str(grid[x][y]),
-               "Courier", -36, "bold", "c")
+               "Courier", -48, "bold", "c")
 
 
     text_color = TEXT_COLOR
@@ -298,7 +298,7 @@ def drawSquare(x, y, val, min, max, valStr, action, isObstacle, isTerminal, isCu
         circle( (screen_x, screen_y), 0.1*GRID_SIZE, outlineColor=LOCATION_COLOR, fillColor=LOCATION_COLOR )
 
     if not isObstacle:
-        text( (screen_x, screen_y), text_color, valStr, "Courier", -30, "bold", "c")
+        text( (screen_x, screen_y+10), text_color, valStr, "Courier", -48, "bold", "c")
 
 
 def drawSquareQ(x, y, qVals, minVal, maxVal, valStrs, bestActions, isCurrent):
@@ -374,10 +374,10 @@ def drawSquareP(x, y, probs, minValue, maxValue, isCurrent):
     ne = (screen_x+0.5*GRID_SIZE, screen_y-0.5*GRID_SIZE)
     se = (screen_x+0.5*GRID_SIZE, screen_y+0.5*GRID_SIZE)
     sw = (screen_x-0.5*GRID_SIZE, screen_y+0.5*GRID_SIZE)
-    n = (screen_x, screen_y-0.5*GRID_SIZE+5)
+    n = (screen_x, screen_y-0.5*GRID_SIZE+15)
     s = (screen_x, screen_y+0.5*GRID_SIZE-5)
-    w = (screen_x-0.5*GRID_SIZE+5, screen_y)
-    e = (screen_x+0.5*GRID_SIZE-5, screen_y)
+    w = (screen_x-0.5*GRID_SIZE+12.5, screen_y+5)
+    e = (screen_x+0.5*GRID_SIZE-10,  screen_y+5)
 
     actions = list(probs.keys())
     for action in actions:
@@ -410,20 +410,20 @@ def drawSquareP(x, y, probs, minValue, maxValue, isCurrent):
     for action in actions:
         text_color = TEXT_COLOR
         if probs[action] < maxValue: text_color = MUTED_TEXT_COLOR
-        valStr = f"{100 * probs[action]:.1f}"
-        h = -20
+        valStr = f"{100 * probs[action]:.0f}"
+        size = -32
         if action == 'north':
             #polygon( (center, nw, ne), wedge_color, filled = 1, smooth = 0)
-            text(n, text_color, valStr, "Courier", h, "bold", "n")
+            text(n, text_color, valStr, "Courier", size, "bold", "n")
         if action == 'south':
             #polygon( (center, sw, se), wedge_color, filled = 1, smooth = 0)
-            text(s, text_color, valStr, "Courier", h, "bold", "s")
+            text(s, text_color, valStr, "Courier", size, "bold", "s")
         if action == 'east':
             #polygon( (center, ne, se), wedge_color, filled = 1, smooth = 0)
-            text(e, text_color, valStr, "Courier", h, "bold", "e")
+            text(e, text_color, valStr, "Courier", size, "bold", "e")
         if action == 'west':
             #polygon( (center, nw, sw), wedge_color, filled = 1, smooth = 0)
-            text(w, text_color, valStr, "Courier", h, "bold", "w")
+            text(w, text_color, valStr, "Courier", size, "bold", "w")
 
 
 
