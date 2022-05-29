@@ -108,13 +108,13 @@ for grid in ["SmallGrid", "MazeGrid"]:
             legends=["avg policy entropy",
                      "avg policy entropy with ent. reg."],
             legends_loc = "upper right",
-            labels={"x":"Iteration", "y":"Return"},
+            labels={"x":"Iteration", "y":"Entropy"},
             fmt=["--b", "--r"], alpha=[0.3, 0.6])
 
 
 # Initialize the policy.
 for grid in ["SmallGrid", "MazeGrid"]:
-    gridWorldLayoutFunction = getattr(gridworld, "getMazeGrid2")
+    gridWorldLayoutFunction = getattr(gridworld, "get"+grid)
     gridWorldLayout = gridWorldLayoutFunction()
     gridWorldLayout.setLivingReward(-1)
     gridWorldLayout.setNoise(0.0)
